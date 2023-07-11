@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid';
 import { Component } from 'react';
 
 export class ContactForm extends Component {
@@ -15,7 +14,7 @@ export class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(nanoid());
+    this.props.addContact(this.state);
   };
 
   render() {
