@@ -9,6 +9,7 @@ export class Filter extends Component {
     this.setState({
       search: target.value,
     });
+    this.props.filterContact(target.value.toLowerCase());
   };
 
   render() {
