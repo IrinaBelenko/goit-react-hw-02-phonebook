@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 export const ContactListItem = ({ name, number, id, onDelete }) => {
   return (
     <li>
@@ -8,4 +10,11 @@ export const ContactListItem = ({ name, number, id, onDelete }) => {
       </button>
     </li>
   );
+};
+
+ContactListItem.propTypes = {
+  name: PropTypes.string,
+  number: PropTypes.string,
+  id: PropTypes.string,
+  onDelete: PropTypes.func,
 };
