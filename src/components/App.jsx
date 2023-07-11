@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { nanoid } from 'nanoid';
+import { Filter } from './Filter/Filter';
 
 export class App extends Component {
   state = {
@@ -26,14 +27,31 @@ export class App extends Component {
     });
   };
 
+  filterContact = search => {
+    this.setState(prev => {
+      return {
+        contacts: prev.contacts.filter(contact => contact.includes(search)),
+      };
+    });
+  };
+
+  deleteContact = id => {
+    this.setState(prev => {
+      return { contacts: prev.contacts.filter(contact => contact.id !== id) };
+    });
+  };
+
   render() {
     return (
       <div>
         <h1>Phonebook</h1>
         <ContactForm addContact={this.addContact}> </ContactForm>
         <h2>Contacts</h2>
-        {/* <Filter ... /> */}
-        <ContactList contacts={this.state.contacts}></ContactList>
+        <Filter filterContact={this.filterContact}> </Filter>
+        <ContactList
+          contacts={this.state.contacts}
+          deleteContact={this.deleteContact}
+        ></ContactList>
       </div>
     );
   }
